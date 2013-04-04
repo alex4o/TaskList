@@ -57,7 +57,7 @@ namespace TableReader
             }
             set 
             {
-                pass = UserManager.EncodePassword(value).Replace("-",""); 
+                pass = UserManager.EncodePassword(value).Replace("-","").ToLower(); 
             }
         }
 
@@ -66,11 +66,15 @@ namespace TableReader
             get;
             set;
         }
-        public TaskUser() { }
-        public TaskUser(String name,String pass)
+        public TaskUser()
         {
-            name = this.Name;
-            pass = this.Pass;
+            this.Tables = new List<TaskTable>();
+        }
+        public TaskUser(String uname,String upass)
+        {
+            this.Name = uname;
+            this.Pass = upass;
+            this.Tables = new List<TaskTable>();
         }
 
      
@@ -91,12 +95,19 @@ namespace TableReader
 
         public void Signup()
         {
-            BsonDocument doc = new BsonDocument{
+            /* BsonDocument doc = new BsonDocument{
                 {"name",this.Name},
                 {"pass",this.Pass}
             };
-            MongoManager.UsersCollection.Save(doc);
+            MongoManager.UsersCollection.Save(doc); */
+            MongoManager.UsersCollection.Insert(this);
         }
+
+        public override string ToString()
+        {
+            return this.Name + " - " + this.Pass;
+        }
+
 
 
     }
@@ -107,6 +118,10 @@ namespace TableReader
         {
             get;
             set;
+        }
+
+        void add() { 
+        
         }
 
         public List<Task> Tasks
