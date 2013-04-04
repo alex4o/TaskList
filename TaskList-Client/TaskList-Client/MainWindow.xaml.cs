@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using TableReader;
 namespace TaskList_Client
 {
     /// <summary>
@@ -23,5 +23,19 @@ namespace TaskList_Client
         {
             InitializeComponent();
         }
+
+        private void SignUp_Click(object sender, RoutedEventArgs e)
+        {
+            MongoManager man = new MongoManager();   
+            TaskUser user1 = new TaskUser("alex","1234");
+            try
+            {
+                user1.Login();
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+         }
     }
 }

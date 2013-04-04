@@ -101,9 +101,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TebleReader\TebleReader.csproj">
+    <ProjectReference Include="..\TebleReader\TableReader.csproj">
       <Project>{689ec453-faff-4b8c-9366-6b01317e0ae8}</Project>
-      <Name>TebleReader</Name>
+      <Name>TableReader</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
